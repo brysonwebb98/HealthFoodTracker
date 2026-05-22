@@ -1,0 +1,20 @@
+### HOME ROUTES
+GET http://localhost:3000/
+
+### GET REQUEST ALL FOOD
+GET http://localhost:3000/foods
+
+### GET REQUEST FOOD W/PARAMETER
+
+GET http://localhost:3000/foods?mealType=lunch
+
+### POST REQUEST ADDING FOOD
+
+POST http://localhost:3000/foods
+Content-Type: application/json
+
+{
+  "foodName": "Eggs",
+  "calories": 220,
+  "mealType": "breakfast"
+}

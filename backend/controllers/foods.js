@@ -6,7 +6,7 @@ const getAllFoods = async (req, res) => {
     const db = mongodb.getDb();
 
     if (req.query.mealType) {
-    const mealType = req.query.mealType
+    const mealType = req.query.mealType.toLowerCase();
     const result = await db.collection('foods').find({mealType: mealType});
 
     const foodsBytype = await result.toArray()
@@ -42,7 +42,7 @@ const addFood = async (req, res) => {
         });
     }
 
-    const validMealTypes = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
+    const validMealTypes = ['breakfast', 'lunch', 'dinner', 'snack'];
 
     if (!validMealTypes.includes(mealType)) {
         return res.status(400).json({
