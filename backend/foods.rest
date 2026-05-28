@@ -6,7 +6,7 @@ GET http://localhost:3000/foods
 
 ### GET REQUEST FOOD W/PARAMETER
 
-GET http://localhost:3000/foods?mealType=lunch
+GET http://localhost:3000/foods?mealType=breakfast
 
 ### POST REQUEST ADDING FOOD
 
@@ -14,7 +14,7 @@ POST http://localhost:3000/foods
 Content-Type: application/json
 
 {
-  "foodName": "Eggs",
-  "calories": 220,
-  "mealType": "breakfast"
+  "foodName": "Hamburger",
+  "calories": 500,
+  "mealType": "dinner"
 }
