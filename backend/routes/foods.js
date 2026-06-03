@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const authenticateToken = require('../validation/authenticate');
 
 const foodsController = require('../controllers/foods')
 
@@ -12,6 +13,7 @@ router.get('/:id', foodsController.getSingleFood);
 // POST REQUEST | ADDING FOODS
 router.post(
     '/', 
+    authenticateToken, 
     /*
         #swagger.parameters['body'] = 
         {
@@ -31,6 +33,7 @@ router.post(
 // PUT REQUEST | UPDATING FOODS
 router.put(
     '/:id', 
+    authenticateToken,
     /*
         #swagger.parameters['id'] = {
             in: 'path',
@@ -55,6 +58,7 @@ router.put(
 
 router.delete(
     '/:id', 
+    authenticateToken,
     /*
         #swagger.parameters['id'] = {
             in: 'path',

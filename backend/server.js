@@ -1,4 +1,7 @@
+require('dotenv').config();
 const express = require('express');
+const passport = require('passport');
+const GitHubStrategy = require('passport-github2').Strategy;
 const mongodb = require('./DB/connection');
 const app = express();
 const routes = require('./routes');
@@ -6,6 +9,24 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 const path = require('path');
 const port = process.env.PORT || 3000;
+
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/github/callback"
+},
+
+function(accessToken, refreshToken, profile, done) {
+    return done(null, profile);
+}));
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 app.use(
     express.static(
