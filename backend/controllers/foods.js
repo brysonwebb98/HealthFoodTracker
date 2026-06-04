@@ -93,21 +93,25 @@ const addFood = async (req, res) => {
             
         const db = mongodb.getDb();
 
-        const { foodName, calories, mealType } = req.body;
+        const { foodName, calories, mealType, servingSize, protein, carbs, fat } = req.body;
 
         // VALIDATION
-        const error = validateFood(foodName, calories, mealType);
+        const errors = validateFood(foodName, calories, mealType, servingSize, protein, carbs, fat);
 
-        if (error) {
-            return res.status(400).json({message: error});
+        if (errors.length > 0) {
+            return res.status(400).json({ errors });
         }
 
         const foodToAdd = {
             foodName,
             calories,
             mealType,
+            servingSize,
+            protein,
+            carbs,
+            fat,
             date: new Date()
-        }
+        };
 
         const result = await db.collection('foods').insertOne(foodToAdd);
 
@@ -129,7 +133,7 @@ const updateFood = async (req, res) => {
         const db = mongodb.getDb();
 
         const foodId = req.params.id;
-        const {foodName, calories, mealType} = req.body;
+        const { foodName, calories, mealType, servingSize, protein, carbs, fat } = req.body;
 
         // VALIDATION
         const idError = validateObjectId(foodId);
@@ -138,15 +142,21 @@ const updateFood = async (req, res) => {
                 message: idError
             });
         }
-        const error = validateFood(foodName, calories, mealType);
-        if (error) {
-            return res.status(400).json({message: error});
+        
+        const errors = validateFood(foodName, calories, mealType, servingSize, protein, carbs, fat);
+
+        if (errors.length > 0) {
+            return res.status(400).json({ errors });
         }
 
         const updatedFood = {
             foodName,
             calories,
-            mealType
+            mealType,
+            servingSize,
+            protein,
+            carbs,
+            fat
         };
 
         const result = await db.collection('foods').updateOne(

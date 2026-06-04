@@ -23,7 +23,11 @@ router.post(
             schema: {
                 foodName: 'Apple',
                 calories: 95,
-                mealType: 'snack'
+                mealType: 'snack',
+                servingSize: '1 medium',
+                protein: 0.5,
+                carbs: 25,
+                fat: 0.3
             }
         }
     */
@@ -45,9 +49,13 @@ router.put(
             description: 'Update a food',
             required: true,
             schema: {
-                foodName: 'Banana',
-                calories: 105,
-                mealType: 'breakfast'
+                foodName: 'Apple',
+                calories: 95,
+                mealType: 'snack',
+                servingSize: '1 medium',
+                protein: 0.5,
+                carbs: 25,
+                fat: 0.3
             }
         }
     */

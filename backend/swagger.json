@@ -63,6 +63,22 @@
                 "mealType": {
                   "type": "string",
                   "example": "snack"
+                },
+                "servingSize": {
+                  "type": "string",
+                  "example": "1 medium"
+                },
+                "protein": {
+                  "type": "number",
+                  "example": 0.5
+                },
+                "carbs": {
+                  "type": "number",
+                  "example": 25
+                },
+                "fat": {
+                  "type": "number",
+                  "example": 0.3
                 }
               }
             }
@@ -141,15 +157,31 @@
               "properties": {
                 "foodName": {
                   "type": "string",
-                  "example": "Banana"
+                  "example": "Apple"
                 },
                 "calories": {
                   "type": "number",
-                  "example": 105
+                  "example": 95
                 },
                 "mealType": {
                   "type": "string",
-                  "example": "breakfast"
+                  "example": "snack"
+                },
+                "servingSize": {
+                  "type": "string",
+                  "example": "1 medium"
+                },
+                "protein": {
+                  "type": "number",
+                  "example": 0.5
+                },
+                "carbs": {
+                  "type": "number",
+                  "example": 25
+                },
+                "fat": {
+                  "type": "number",
+                  "example": 0.3
                 }
               }
             }
@@ -230,6 +262,225 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/recipes/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "mealType",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add a new recipe",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "recipeName": {
+                  "type": "string",
+                  "example": "Greek Yogurt Parfait"
+                },
+                "mealType": {
+                  "type": "string",
+                  "example": "breakfast"
+                },
+                "calories": {
+                  "type": "number",
+                  "example": 250
+                },
+                "protein": {
+                  "type": "number",
+                  "example": 20
+                },
+                "difficulty": {
+                  "type": "string",
+                  "example": "easy"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/recipes/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Recipe ID / Object ID MongoDB"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update a recipe",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "recipeName": {
+                  "type": "string",
+                  "example": "Greek Yogurt Parfait"
+                },
+                "mealType": {
+                  "type": "string",
+                  "example": "breakfast"
+                },
+                "calories": {
+                  "type": "number",
+                  "example": 250
+                },
+                "protein": {
+                  "type": "number",
+                  "example": 20
+                },
+                "difficulty": {
+                  "type": "string",
+                  "example": "easy"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Recipe ID / Object ID MongoDB"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
