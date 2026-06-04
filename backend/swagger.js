@@ -5,8 +5,8 @@ const doc = {
         title: 'Health Food Tracker API',
         description: 'API documentation for Health and Food Tracker',
     },
-    host: 'localhost:3000',
-    schemes: ['http'],
+    host: 'healthfoodtracker.onrender.com',
+    schemes: ['https'],
 };
 
 const outputFile = './swagger.json';
