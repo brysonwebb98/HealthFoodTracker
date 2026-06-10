@@ -24,11 +24,15 @@ Users will be able to create, view, update, and delete food entries. Each food e
 
 ```json
 {
-  "foodName": "Chicken Burrito",
-  "calories": 650,
-  "protein": 42,
-  "mealType": "Lunch",
-  "date": "2026-05-21"
+  "_id": "6a21161207ef8883071906a0",
+    "foodName": "Apple",
+    "calories": 95,
+    "mealType": "snack",
+    "servingSize": "1 medium",
+    "protein": 0.5,
+    "carbs": 25,
+    "fat": 0.3,
+    "date": "2026-06-04T06:07:14.299Z"
 }
 ```
 
